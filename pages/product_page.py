@@ -28,3 +28,13 @@ class ProductPage(BasePage):
         price_in_message = self.browser.find_element(*ProductPageLocators.PRICE_IN_MESSAGE).text
         assert price == price_in_message, "The price of the added item is different!"
 
+    def should_not_be_success_message(self):
+        """Проверяем, что отсутствует сообщение о добавлении в корзину."""
+        assert self.is_not_element_present(*ProductPageLocators.MESSAGE_ABOUT_ADING_TO_BASKET), \
+       "Success message is presented, but should not be"
+
+    def should_be_disappeared(self):
+        """Проверяем, что элемент исчезает."""
+        assert self.is_disappeared(*ProductPageLocators.MESSAGE_ABOUT_ADING_TO_BASKET), \
+       "The element is not disappeared!"
+
