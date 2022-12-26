@@ -79,6 +79,7 @@ def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
 
 @pytest.mark.login_user
 class TestUserAddToBasketFromProductPage():
+    """Добавили новый класс для новых пользователей."""
     @pytest.fixture(scope="function", autouse=True)
     def setup(self,browser):
         link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
@@ -105,6 +106,3 @@ class TestUserAddToBasketFromProductPage():
         page.should_be_match_the_price_in_cart()     # проверяем идентичность цены
 # pytest -v --tb=line --language=en -m login_user test_product_page.py
 # pytest -v --tb=line --language=en -m need_review
-
-
-
