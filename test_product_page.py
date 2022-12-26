@@ -1,6 +1,7 @@
 import pytest
 
 from .pages.basket_page import BasketPage
+from .pages.login_page import LoginPage
 from .pages.product_page import ProductPage
 
 
@@ -79,3 +80,33 @@ def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
     page.go_to_basket_page()           # переход в корзину
     page.should_not_be_message_about_adding_product_in_basket() # проверяем что нет сообщения о добавлении товара в корзину
     page.should_be_message_about_empty_basket() # проверяем что есть сообщение о пустой корзине
+
+@pytest.mark.login_user
+class TestUserAddToBasketFromProductPage():
+    @pytest.fixture(scope="function", autouse=True)
+    def setup(self,browser):
+        link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
+        page = LoginPage(browser, link)        # инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес 
+        page.open()
+        page.go_to_login_page()                # открыть страницу регистрации
+        page.register_new_user()               # регистрация пользователя
+        page.should_be_authorized_user()       # проверка авторизации
+
+    def test_user_cant_see_success_message(self, browser):
+        link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
+        page = ProductPage(browser, link)        # инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес 
+        page.open()
+        page.should_not_be_success_message()     # проверка, что сообщение о добавлении в корзину отсутствует
+
+    def test_user_can_add_product_to_basket(self, browser):
+        link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
+        page = ProductPage(browser, link)        # инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес 
+        page.open()                              # открываем страницу
+        page.should_be_add_to_cart_button()      # проверка что есть кнопка добавления в корзину
+        page.adding_product_to_cart()            # добавим товар в корзину
+        page.should_be_match_product_name_in_cart()  # проверяем идентичность названия продукта
+        page.should_be_match_the_price_in_cart()     # проверяем идентичность цены
+
+# pytest -v --tb=line --language=en -m login_user test_product_page.py
+
+
