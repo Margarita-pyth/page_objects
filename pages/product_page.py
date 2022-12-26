@@ -4,10 +4,12 @@ from .locators import ProductPageLocators
 
 class ProductPage(BasePage): 
     def adding_product_to_cart(self):
+        """Добавление продукта в корзину."""
         login_link = self.browser.find_element(*ProductPageLocators.CART_BUTTON)
         login_link.click()
 
     def should_be_add_to_cart_button(self):
+        """Проверка на наличие кнопки добавления в корзину."""
         assert self.is_element_present(*ProductPageLocators.CART_BUTTON), "Cart Button is not presented"
 
     def should_be_match_product_name_in_cart(self):
@@ -37,4 +39,3 @@ class ProductPage(BasePage):
         """Проверяем, что элемент исчезает."""
         assert self.is_disappeared(*ProductPageLocators.MESSAGE_ABOUT_ADING_TO_BASKET), \
        "The element is not disappeared!"
-

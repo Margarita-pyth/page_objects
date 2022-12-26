@@ -11,15 +11,15 @@ class LoginPage(BasePage):
         self.should_be_register_form()
 
     def should_be_login_url(self):
-        # реализуйте проверку на корректный url адрес
+        """Проверка на корректный url адрес."""
         assert "login" in self.browser.current_url, "There is no Login substring in the current url"
 
     def should_be_login_form(self):
-        # реализуйте проверку, что есть форма логина
+        """Проверка на наличие формы логина."""
         assert self.is_element_present(*LoginPageLocators.LOGIN_BUTTON), "Login Form is not presented"
 
     def should_be_register_form(self):
-        # реализуйте проверку, что есть форма регистрации на странице
+        """Проверка на наличие формы регистрации."""
         assert self.is_element_present(*LoginPageLocators.REGISTRATION_BUTTON), "Registration Form is not presented"
 
     def register_new_user(self):
@@ -35,4 +35,3 @@ class LoginPage(BasePage):
         repeat_password.send_keys(default_password)
         button = self.browser.find_element(*BasePageLocators.REGISTRATION_SUBMIT)
         button.click()
-

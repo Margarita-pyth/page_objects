@@ -15,9 +15,6 @@ class BasePageLocators():
     REGISTRATION_SUBMIT = (By.NAME, "registration_submit")
     USER_ICON = (By.CSS_SELECTOR, ".icon-user")
 
-#class MainPageLocators():
-#    LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
-
 class LoginPageLocators():
     LOGIN_BUTTON = (By.ID, "login_form")
     REGISTRATION_BUTTON = (By.ID, "register_form")
@@ -27,6 +24,6 @@ class ProductPageLocators():
     MESSAGE_ABOUT_ADING_TO_BASKET = (By.CLASS_NAME, "alertinner")
     MESSAGE_WITH_PRICE = (By.CSS_SELECTOR, '.alertinner p')
     PRODUCT_NAME = (By.CSS_SELECTOR, '.product_main h1')
-    PRODUCT_NAME_IN_MESSAGE = (By.CSS_SELECTOR, '.alertinner strong') # div.alert:nth-child(1) strong
-    PRICE_IN_THE_CART = (By.CSS_SELECTOR, '.product_main p') # .price_color:nth-child(2)
-    PRICE_IN_MESSAGE = (By.CSS_SELECTOR, '.alertinner p strong') # div.alert:nth-child(3) strong
+    PRODUCT_NAME_IN_MESSAGE = (By.CSS_SELECTOR, '.alertinner strong')
+    PRICE_IN_THE_CART = (By.CSS_SELECTOR, '.product_main p')
+    PRICE_IN_MESSAGE = (By.CSS_SELECTOR, '.alertinner p strong')
